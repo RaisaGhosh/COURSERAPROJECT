@@ -22,7 +22,8 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 CSRF_TRUSTED_ORIGINS = ['*']
-CSRF_COOKIE_DOMAIN = '.*'
+CSRF_COOKIE_DOMAIN = ['https://*.google.com']
+CSRF_COOKIE_SECURE=True
 
 # IS_HEROKU = "DYNO" in os.environ
 
