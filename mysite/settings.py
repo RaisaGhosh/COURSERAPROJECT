@@ -21,9 +21,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-CSRF_TRUSTED_ORIGINS = ['*']
-CSRF_COOKIE_DOMAIN = ['https://*.google.com']
-CSRF_COOKIE_SECURE=True
+# CSRF_TRUSTED_ORIGINS = ['*']
+# CSRF_COOKIE_DOMAIN = ['https://*.google.com']
+# CSRF_COOKIE_SECURE=True
 
 # IS_HEROKU = "DYNO" in os.environ
 
@@ -37,7 +37,7 @@ CSRF_COOKIE_SECURE=True
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
 
@@ -51,7 +51,8 @@ DEBUG = True
 #     DEBUG = True
 
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.ngrok.io']
 
 # ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
