@@ -21,7 +21,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-IS_HEROKU = "DYNO" in os.environ
+# IS_HEROKU = "DYNO" in os.environ
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,31 +30,31 @@ IS_HEROKU = "DYNO" in os.environ
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-nlb@$n$ovqr4=i%8aei+7%6c%otsl*$g&-c&hge%pfs19p_7ta'
 
-# SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+DEBUG = True
 
-SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
+# SECRET_KEY = "CHANGE_ME!!!! (P.S. the SECRET_KEY environment variable will be used, if set, instead)."
 
-if 'SECRET_KEY' in os.environ:
-    SECRET_KEY = os.environ["SECRET_KEY"]
-
-
-DEBUG = os.getenv("DEBUG", "False") == "True"
-
-if not IS_HEROKU:
-    DEBUG = True
+# if 'SECRET_KEY' in os.environ:
+#     SECRET_KEY = os.environ["SECRET_KEY"]
 
 
-# ALLOWED_HOSTS = ['*']
+# DEBUG = os.getenv("DEBUG", "False") == "True"
+
+# if not IS_HEROKU:
+#     DEBUG = True
+
+
+ALLOWED_HOSTS = ['*']
 
 # ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
 
-if IS_HEROKU:
-    ALLOWED_HOSTS = ["*"]
-else:
-    ALLOWED_HOSTS = []
+# if IS_HEROKU:
+#     ALLOWED_HOSTS = ["*"]
+# else:
+#     ALLOWED_HOSTS = []
 
 
 
@@ -75,7 +75,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -115,20 +115,30 @@ DATABASES = {
     }
 }
 
-if DEVELOPMENT_MODE is True:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
-    if os.getenv("DATABASE_URL", None) is None:
-        raise Exception("DATABASE_URL environment variable not defined")
-    DATABASES = {
-        "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
-    }
+# if DEVELOPMENT_MODE is True:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+# elif len(sys.argv) > 0 and sys.argv[1] != 'collectstatic':
+#     if os.getenv("DATABASE_URL", None) is None:
+#         raise Exception("DATABASE_URL environment variable not defined")
+#     DATABASES = {
+#         "default": dj_database_url.parse(os.environ.get("DATABASE_URL")),
+#     }
 
+# DATABASES = {
+#     'default' : {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mysite',
+#         'USER' : 'postgres',
+#         'PASSWORD' : '10041126',
+#         'HOST' : 'localhost',
+#         'PORT' : '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
